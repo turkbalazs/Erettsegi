@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Érettségi tétel</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            input[type=text], select {
+			  width: 100%;
+              padding: 12px 20px;
+              margin: 8px 0;
+              display: block;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+            }
+            
+            input[type=button] {
+			  width: 100%;
+              background-color: #4CAF50;
+              color: white;
+              padding: 14px 20px;
+              margin: 8px 0;
+              display: block;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+            
+            input[type=button]:hover {
+              background-color: #45a049;
+            }
+            
+            div.container {
+              border-radius: 5px;
+              background-color: #f2f2f2;
+              padding: 20px;
+			  margin: auto;
+			  max-width: 50%;
+			  text-align: left;
+            }
+            </style>
+			<script>
+				function calcSum() {
+					let irasbeli = document.getElementsByName("irasbeli")[0].value;
+					let szobeli = document.getElementsByName("szobeli")[0].value;
+					let osszes = Number(irasbeli) + Number(szobeli);
+					document.getElementsByName("osszes")[0].value = osszes;
+					let szazalek = Math.round(osszes/120*100);
+					document.getElementsByName("szazalek")[0].value = szazalek+"%";
+					let jegy;
+					if (document.getElementsByName("szint")[0].value === "kozepszint") {
+						if (szazalek < 25) {
+							jegy = "1 (Elégtelen)";
+						}
+						else if (szazalek < 40) {
+							jegy = "2 (Elégséges)";
+						}
+						else if (szazalek < 60) {
+							jegy = "3 (Közepes)";
+						}
+						else if (szazalek < 80) {
+							jegy = "4 (Jó)";
+						}
+						else {
+							jegy = "5 (Jeles)";
+						}
+					}
+					else {
+						if (szazalek < 25) {
+							jegy = "1 (Elégtelen)";
+						}
+						else if (szazalek < 33) {
+							jegy = "2 (Elégséges)";
+						}
+						else if (szazalek < 47) {
+							jegy = "3 (Közepes)";
+						}
+						else if (szazalek < 60) {
+							jegy = "4 (Jó)";
+						}
+						else {
+							jegy = "5 (Jeles)";
+						}
+					}
+					document.getElementsByName("jegy")[0].value = jegy;
+			    }
+			</script>
+    </head>
+    <body>
+        <h1>Érettségi tétel:<br>
+            Magyarország a második világháborúban
+        </h1>
+        <div id="navbar">
+            <a href="index.html">Főoldal</a>
+            <a href="Kidolgozott érettségi.html">Kidolgozott érettségi tétel</a>
+        </div>
+        <div class="container">
+            <form action="/action_page.php">
+              <label for="szint">Közép/Emeltszint</label>
+              <select name="szint">
+                <option value="kozepszint">Középszintű</option>
+                <option value="emeltszint">Emeltszintű</option>
+              </select>
+          
+              <label for="irasbeli">Írásbeli pontszám</label>
+              <input type="text" name="irasbeli" placeholder="Írásbeli pontszám...">
+          
+              <label for="szobeli">Szóbeli pontszám</label>
+              <input type="text" name="szobeli" placeholder="Szóbeli pontszám...">
+            
+              <input type="button" value="Számítás" onclick="calcSum()">
+          
+              <label for="osszes">Összpontszám</label>
+              <input type="text" name="osszes" placeholder="Összontszám...">
+			  
+			  <label for="szazalek">Százalék</label>
+			  <input type="text" name="szazalek" placeholder="Százalék..." />
+			  
+			  <label for="jegy">Jegy</label>
+			  <input type="text" name="jegy" placeholder="Jegy..." />
+            </form>
+        </div>
+    </body>
+</html>
